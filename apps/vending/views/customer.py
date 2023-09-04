@@ -9,7 +9,10 @@ from rest_framework.views import APIView
 
 class Customer(APIView):
     def get(self, request: Request) -> Response:
-        return Response()
+        customers = CustomerModel.objects.all()
+        customers_serializer = CustomerSerializer(customers, many=True)
+
+        return Response(data=customers_serializer.data)
 
     def post(self, request: Request) -> Response:
         data = json.loads(request.body)
