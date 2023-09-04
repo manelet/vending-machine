@@ -17,10 +17,6 @@
     {
       "src": "/(.*)",
       "dest": "vending_machine/wsgi.py"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "vending_machine/wsgi.py"
     }
   ]
 }
