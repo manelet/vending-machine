@@ -26,6 +26,7 @@ urlpatterns = [
     path("healthcheck/", healthcheck),
     path("products/", vending_views.Products.as_view()),
     path("customers/", vending_views.Customer.as_view()),
+    path("wallet/", vending_views.Wallet.as_view()),
     re_path(r"^$", TemplateView.as_view(template_name="root.html")),
 ]
 

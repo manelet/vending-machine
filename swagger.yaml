@@ -14,11 +14,13 @@ paths:
             schema:
               type: object
               properties:
-                total_amount:
+                new_balance:
                   type: number
+                customer_name:
+                  type: string
       responses:
-        200:
-          description: Hola jairo
+        204:
+          description: No content
   /order:
     post:
       summary: Place an order to the vending machine
@@ -76,27 +78,33 @@ components:
   schemas:
     Product:
       type: object
+      required: ["id", "name", "price", "stock"]
       properties:
+        id:
+          type: string
+          format: uuid
         name:
           type: string
           example: Coca-cola
         price:
           type: number
           example: 2.5
-        id:
+        stock:
+          type: integer
+          example: 15
+        image:
           type: string
-          format: uuid
 
     OrderResponse:
       type: object
       properties:
-        customer:
-          type: string
-          example: Jairo
+        new_balance:
+          type: number
+          example: 0.33
     Order:
       type: object
       properties:
-        customer:
+        customer_name:
           type: string
           example: Jairo
         product:
@@ -105,14 +113,17 @@ components:
     SignIn:
       type: object
       required:
-        - name
+        - customer_name
       properties:
-        name:
+        customer_name:
           type: string
           example: Jairo
     Customer:
       type: object
       properties:
+        id:
+          type: string
+          format: uuid
         name:
           type: string
           example: Jairo

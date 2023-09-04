@@ -5,6 +5,7 @@ from apps.vending.serializers import CustomerSerializer
 import json
 from datetime import datetime
 from rest_framework.views import APIView
+from django.core.exceptions import ObjectDoesNotExist
 
 
 class Customer(APIView):
@@ -18,11 +19,11 @@ class Customer(APIView):
         data = json.loads(request.body)
 
         try:
-            customer = CustomerModel.objects.get(name=data["name"])
+            customer = CustomerModel.objects.get(name=data["customer_name"])
             customer.last_login = datetime.now()
             customer.save()
         except ObjectDoesNotExist:
-            customer = CustomerModel(name=data["name"], credit=0)
+            customer = CustomerModel(name=data["customer_name"], credit=0)
             customer.save()
 
         customer_serializer = CustomerSerializer(customer, many=False)
