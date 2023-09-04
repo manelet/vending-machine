@@ -36,7 +36,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/Order"
-  /signin:
+  /customers:
     post:
       summary: Create or return a customer
       description: Adds or retrieve user with the amount of credit remaining
@@ -71,6 +71,7 @@ components:
   schemas:
     Product:
       type: object
+
       properties:
         name:
           type: string
@@ -84,6 +85,7 @@ components:
         id:
           type: string
           format: uuid
+
     OrderResponse:
       type: object
       properties:
@@ -122,3 +124,7 @@ components:
         last_login:
           type: string
           format: date-time
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/MANELET_1/vending-machine/1.0.0
