@@ -66,12 +66,16 @@ paths:
                 items:
                   type: array
                   items:
-                    $ref: "#/components/schemas/Product"
+                    type: object
+                    properties:
+                      quantity:
+                        type: number
+                      product:
+                        $ref: "#/components/schemas/Product"
 components:
   schemas:
     Product:
       type: object
-
       properties:
         name:
           type: string
@@ -79,9 +83,6 @@ components:
         price:
           type: number
           example: 2.5
-        stock:
-          type: integer
-          example: 15
         id:
           type: string
           format: uuid
