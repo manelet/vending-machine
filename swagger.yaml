@@ -1,0 +1,121 @@
+openapi: 3.0.0
+info:
+  description: Vending machine API definition
+  version: "1.0.0"
+  title: Vending machine API
+  contact:
+    email: manel@abacum.io
+paths:
+  /wallet:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                total_amount:
+                  type: number
+      responses:
+        200:
+          description: Hola jairo
+  /order:
+    post:
+      summary: Place an order to the vending machine
+      description: Place an order to the vending machine
+      responses:
+        200:
+          description: Successfull order
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OrderResponse"
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Order"
+  /signin:
+    post:
+      summary: Create or return a customer
+      description: Adds or retrieve user with the amount of credit remaining
+      responses:
+        200:
+          description: A Customer object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SignIn"
+        description: Allow or not user access to vending machine
+  /products:
+    get:
+      summary: Get the list of products to show
+      responses:
+        200:
+          description: List of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/Product"
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Coca-cola
+        price:
+          type: number
+          example: 2.5
+        stock:
+          type: integer
+          example: 15
+    OrderResponse:
+      type: object
+      properties:
+        customer:
+          type: string
+          example: Jairo
+    Order:
+      type: object
+      properties:
+        customer:
+          type: string
+          example: Jairo
+        product:
+          type: string
+          format: uuid
+    SignIn:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          example: Jairo
+    Customer:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Jairo
+        credit:
+          type: number
+          example: 2.00
+        created_at:
+          type: string
+          format: date-time
+        last_login:
+          type: string
+          format: date-time
