@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-gj5oaa8mzst4mkg#^wg2t93b%cg-429+(e7xbkeo)e=2jz970+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", ".vercel.app"]
 
 
 # Application definition
@@ -82,8 +82,15 @@ WSGI_APPLICATION = "vending_machine.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        # "ENGINE": "django.db.backends.sqlite3",
+        # "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "postgres",
+        "HOST": "db.bxmewkqhyduhzidztovt.supabase.co",
+        "PASSWORD": "vSz232fBUZAB2lIb",
+        "PORT": 5432,
+        "USER": "postgres",
+        "CERT": "config.prod-ca-2021.crt",  # download this from database/settings and put in your main app folder
     }
 }
 

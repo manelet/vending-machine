@@ -81,6 +81,9 @@ components:
         stock:
           type: integer
           example: 15
+        id:
+          type: string
+          format: uuid
     OrderResponse:
       type: object
       properties:
