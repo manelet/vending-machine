@@ -107,7 +107,7 @@ components:
         customer_name:
           type: string
           example: Jairo
-        product:
+        slot:
           type: string
           format: uuid
     SignIn:
