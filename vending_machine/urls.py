@@ -24,7 +24,7 @@ import apps.vending.views as vending_views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("healthcheck/", healthcheck),
-    path("products/", vending_views.Products.as_view()),
+    path("slots/", vending_views.Slots.as_view()),
     path("customers/", vending_views.Customer.as_view()),
     path("wallet/", vending_views.Wallet.as_view()),
     path("order/", vending_views.Order.as_view()),
