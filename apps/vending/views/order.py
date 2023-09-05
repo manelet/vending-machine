@@ -18,7 +18,7 @@ class Order(APIView):
 
         try:
             customer = Customer.objects.get(name=data["customer_name"])
-            slot = Slot.objects.get(id=data["slot"])
+            slot = Slot.objects.get(id=data["slot_id"])
 
             customer.credit = decimal.Decimal(customer.credit) - decimal.Decimal(
                 slot.product.price
