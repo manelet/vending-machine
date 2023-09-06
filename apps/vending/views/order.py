@@ -20,14 +20,22 @@ class Order(APIView):
             customer = Customer.objects.get(name=data["customer_name"])
             slot = Slot.objects.get(id=data["slot_id"])
 
-            customer.credit = decimal.Decimal(customer.credit) - decimal.Decimal(
+            new_quantity = slot.quantity - 1
+
+            if new_quantity < 0:
+                return BadRequest("Not enough stock to process the order")
+            slot.quantity = new_quantity
+            new_credit = decimal.Decimal(customer.credit) - decimal.Decimal(
                 slot.product.price
             )
-            slot.quantity = slot.quantity - 1
+
+            if new_credit < 0:
+                new_credit = 0
+            customer.credit = new_credit
 
             customer.save()
             slot.save()
             return JsonResponse({"new_balance": customer.credit})
 
         except ObjectDoesNotExist:
-            raise BadRequest("Customer does not exist.")
+            raise BadRequest("Customer or slot does not exist.")
